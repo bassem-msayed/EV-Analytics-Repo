@@ -14,12 +14,14 @@ models:
       - name: acquisition_channel
         tests:
           - accepted_values:
-              values: ["organic", "paid", "partner", "referral"]
+              arguments:
+                values: ["organic", "paid", "partner", "referral"]
       - name: customer_segment
         tests:
           - not_null
           - accepted_values:
-              values: ["budget", "premium", "standard"]
+              arguments:
+                values: ["budget", "premium", "standard"]
       - name: signup_date
         tests:
           - not_null
