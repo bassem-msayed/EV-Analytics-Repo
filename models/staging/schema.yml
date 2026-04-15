@@ -45,7 +45,7 @@ models:
           - not_null
           - accepted_values:
               arguments:
-                values: ["FL-EAST", "FL-WEST", "FL-North", "FL-SOUTH"]
+                values: ["fl-east", "fl-west", "fl-north", "fl-south"]
 
   - name: stg_subscriptions
     columns:

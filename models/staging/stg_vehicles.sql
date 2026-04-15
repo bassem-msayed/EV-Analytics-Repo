@@ -9,7 +9,7 @@ with
             model,
             battery_range_km,
             age_months,
-            fleet_id,
+            lower(fleet_id) as fleet_id,
             cast(procurement_date as date) as procurement_date
         from source
     )
