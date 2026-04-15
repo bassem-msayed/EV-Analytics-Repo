@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: ev_rawdata
+    database: ev-analytics-project
+    schema: ev_rawdata
+    tables:
+      - name: raw_customers
+      - name: raw_subscriptions
+      - name: raw_vehicles
