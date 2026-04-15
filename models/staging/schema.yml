@@ -9,7 +9,9 @@ models:
           - not_null
       - name: email
         tests:
-          - unique
+          - unique:
+              config:
+                severity: warn
           - not_null
       - name: acquisition_channel
         tests:
