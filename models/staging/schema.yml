@@ -1,0 +1,24 @@
+version: 2
+models:
+  -name: stg_customers
+  columns:
+    -name: customer_id
+    tests:
+      -unique
+      -not_null
+    -name: email
+    tests:
+      -unique
+      -not_null
+    -name: acquisition_channel
+    tests:
+      -accepted_values:
+        values: ['organic', 'paid', 'partner', 'referral']
+    -name: customer_segment
+    tests:
+      -not_null
+      -accepted_values:
+        values: ['budget', 'premium', 'standard']
+    -name: signup_date
+    tests:
+      -not_null
