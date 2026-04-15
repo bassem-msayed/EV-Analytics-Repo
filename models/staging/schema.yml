@@ -27,3 +27,44 @@ models:
       - name: signup_date
         tests:
           - not_null
+
+  - name: stg_vehicles
+    columns:
+      - name: vehicle_id
+        tests:
+          - unique
+          - not_null
+      - name: model
+        tests:
+          - not_null
+      - name: battery_range
+        tests:
+          - not_null
+      - name: fleet_id
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["FL-EAST", "FL-WEST", "FL-North", "FL-SOUTH"]
+
+  - name: stg_subscriptions
+    columns:
+      - name: subscription_id
+        tests:
+          - unique
+          - not_null
+      - name: start_date
+        tests:
+          - not_null
+      - name: plan_tier
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["basic", "premium", "standard"]
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["active", "cancelled"]
