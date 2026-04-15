@@ -10,7 +10,7 @@ with
             battery_range_km,
             age_months,
             fleet_id,
-            cast(procurement_date as date) as procurement_date,
+            cast(procurement_date as date) as procurement_date
         from source
     )
 select * from renamed
