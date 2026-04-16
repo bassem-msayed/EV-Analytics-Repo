@@ -6,5 +6,28 @@ sources:
     schema: ev_rawdata
     tables:
       - name: raw_customers
+        columns:
+          - name: customer_id
+            description: "Primary key for each customer"
+          - name: region
+            description: "showing customer region, this was cleaned with case statment"
+          - name: customer_segment
+            description: "showing customer segment, only one of 3 options"
       - name: raw_subscriptions
+        columns:
+          - name: subscription_id
+            description: "Primary key for each subscription, a customer could have multiple subscriptions"
+          - name: start_date
+            description: "Subscription start date"
+          - name: end_date
+            description: "Subscription end date, empty if subscription is active"
+          - name: plan_tier
+            description: "Showing tier of subscription plan, only one of 3 options"
+          - name: status
+            description: "Showing status of subscription plan, only one of 2 options"
       - name: raw_vehicles
+        columns:
+          - name: vehicle_id
+            description: "Primary key for each vehicle, a customer could have multiple vehicles"
+          - name: fleet_id
+            description: "Showing customer location category, only 1 of 4 options, this was cleaned with a case statement"

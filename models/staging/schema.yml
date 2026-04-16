@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: stg_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: email
+        tests:
+          - unique:
+              config:
+                severity: warn
+          - not_null
+      - name: acquisition_channel
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["organic", "paid", "partner", "referral"]
+      - name: customer_segment
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["budget", "premium", "standard"]
+      - name: signup_date
+        tests:
+          - not_null
+
+  - name: stg_vehicles
+    columns:
+      - name: vehicle_id
+        tests:
+          - unique
+          - not_null
+      - name: model
+        tests:
+          - not_null
+      - name: battery_range_km
+        tests:
+          - not_null
+      - name: fleet_id
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["east", "west", "north", "south"]
+
+  - name: stg_subscriptions
+    columns:
+      - name: subscription_id
+        tests:
+          - unique
+          - not_null
+      - name: start_date
+        tests:
+          - not_null
+      - name: plan_tier
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["basic", "premium", "standard"]
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ["active", "cancelled"]
