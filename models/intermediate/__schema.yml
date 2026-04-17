@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: int_lifecycle
+    description: "Wide table joining 1-customers, 2-de-duplicated 3- subscriptions along with 4- window function derived fields"
+    columns:
+      - name: subscription_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+      - name: is_churned
+        tests:
+          - not_null
+      - name: subscription_duration_days
+        tests:
+          - not_null
+      - name: subscription_number
+        tests:
+          - not_null

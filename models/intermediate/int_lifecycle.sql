@@ -49,7 +49,7 @@ base as (
             order by s.start_date
         ) as previous_subscription_status
     from {{ ref('stg_customers') }} c
-    left join {{ ref('stg_subscriptions') }} s on s.customer_id = c.customer_id
+    left join clean_subscription s on s.customer_id = c.customer_id
     left join {{ ref('stg_vehicles') }} v on v.vehicle_id = s.vehicle_id
 )
 
