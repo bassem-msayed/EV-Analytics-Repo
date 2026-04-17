@@ -23,9 +23,20 @@ with base as (
         s.plan_tier,
         s.status,
         s.cancellation_reason
+        --derived fields
+        date_diff(s.end_date, s.start_date, day) as subscription_duration_days,
+        case when s.status 'cancelled' then true else false end as is_churned,
+        row_number() over(
+            partition by s.customer_id
+            order by s.start_date
+        ) as subscription_number,
+        lag(s.status) over(
+            partition by s.customer_id
+            order by s.start_date
+        ) as previous_subscription_status
     from {{ ref('stg_customers') }} c
-    join {{ ref('stg_subscriptions') }} s on s.customer_id = c.customer_id
-    join {{ ref('stg_vehicles') }} v on v.vehicle_id = s.vehicle_id
+    left join {{ ref('stg_subscriptions') }} s on s.customer_id = c.customer_id
+    left join {{ ref('stg_vehicles') }} v on v.vehicle_id = s.vehicle_id
 )
 
 select * from base
