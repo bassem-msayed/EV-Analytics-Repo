@@ -32,13 +32,8 @@ base as (
         v.age_months, v.fleet_id, v.procurement_date, 
 
         --subscription data
-        s.subscription_id,s.start_date, s.monthly_fee,
+        s.subscription_id,s.start_date, s.end_date, s.monthly_fee,
         s.plan_tier, s.status, s.cancellation_reason,
-        case 
-            when s.end_date < s.start_date 
-            then current_date()
-            else s.end_date
-        end as end_date,
 
         --derived fields
         date_diff(s.end_date, s.start_date, day) 
@@ -58,7 +53,7 @@ base as (
         ) as previous_subscription_status
 
     from {{ ref('stg_customers') }} c
-    inner join clean_subscriptions s on s.customer_id = c.customer_id
+    inner join clean_dates s on s.customer_id = c.customer_id
     left join {{ ref('stg_vehicles') }} v on v.vehicle_id = s.vehicle_id
 )
 
