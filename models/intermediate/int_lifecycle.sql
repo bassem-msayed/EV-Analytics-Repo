@@ -8,7 +8,7 @@ with deduplicate_subscriptions as (
     from {{ ref('stg_subscriptions') }}
 ),
 clean_subscription as (
-    select * except row_num
+    select * except(row_num)
     from deduplicate_subscriptions
     where row_num = 1
 ),
