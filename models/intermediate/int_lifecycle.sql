@@ -4,7 +4,7 @@ with deduplicate_subscriptions as (
         row_number() over (
             partition by subscription_id
             order by start_date
-        ) as row_num
+            ) as row_num
     from {{ ref('stg_subscriptions') }}
 ),
 clean_subscription as (
@@ -15,39 +15,40 @@ clean_subscription as (
 base as (
     select 
         --customer data
-        c.customer_id,
-        c.full_name,
-        c.email,
-        c.acquisition_channel,
-        c.region,
-        c.customer_segment,
-        c.signup_date,
+        c.customer_id, c.full_name, c.email, c.signup_date,
+        c.acquisition_channel, c.region, c.customer_segment, 
+
         --vehicle data
-        v.vehicle_id,
-        v.model,
-        v.battery_range_km,
-        v.age_months,
-        v.fleet_id,
-        v.procurement_date, 
+        v.vehicle_id, v.model, v.battery_range_km,
+        v.age_months, v.fleet_id, v.procurement_date, 
+
         --subscription data
-        s.subscription_id,
-        s.start_date,
-        s.end_date,
-        s.monthly_fee,
-        s.plan_tier,
-        s.status,
-        s.cancellation_reason,
+        s.subscription_id,s.start_date, s.monthly_fee,
+        s.plan_tier, s.status, s.cancellation_reason,
+        case 
+            when s.end_date < s.start_date 
+            then current_date()
+            else s.end_date
+            end as end_date,
+
         --derived fields
-        date_diff(s.end_date, s.start_date, day) as subscription_duration_days,
-        case when s.status = 'cancelled' then true else false end as is_churned,
+        date_diff(
+            coalesce(s.end_date, current_date()), s.start_date, day) 
+            as subscription_duration_days,
+        case 
+            when s.status = 'cancelled' 
+            then true 
+            else false 
+            end as is_churned,
         row_number() over(
             partition by s.customer_id
             order by s.start_date
-        ) as subscription_number,
+            ) as subscription_number,
         lag(s.status) over(
             partition by s.customer_id
             order by s.start_date
-        ) as previous_subscription_status
+            ) as previous_subscription_status
+
     from {{ ref('stg_customers') }} c
     left join clean_subscription s on s.customer_id = c.customer_id
     left join {{ ref('stg_vehicles') }} v on v.vehicle_id = s.vehicle_id
