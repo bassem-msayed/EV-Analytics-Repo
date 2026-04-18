@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: mart_churn_analysis
+    description: >
+      Final analytical layer for EV subscription churn analysis.
+      One row per subscription. Serves as the single source for the Tableau dashboard.
+    columns:
+      - name: subscription_id
+        description: Primary key, Unique identifier for each subscription.
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Foreign key to customers.
+      - name: vehicle_id
+        description: Foreign key for each vehicle.
+      - name: customer_segment
+        description: Customer tier - budget, mid, or premium.
+      - name: customer_region
+        description: Geographic region of the customer.
+      - name: acquisition_channel
+        description: Channel through which the customer was acquired.
+      - name: start_date
+        description: Subscription start date.
+      - name: end_date
+        description: Subscription end date, or null if subscription is still active.
+      - name: monthly_fee
+        description: Monthly charge for each subscription.
+      - name: vehicle_model
+        description: Model of the EV assigned to the subscription.
+      - name: churn_flag
+        description: True if the subscription has been cancelled, false if still active.
+      - name: cancellation_reason
+        description: Reason provided for cancellation, or null if is still active.
+      - name: subscription_start_month
+        description: Start date formatted as YYYY-MM. Used for trending axis in Tableau.
+      - name: days_active
+        description: Days the subscription was or has been active. Active subscriptions measured to today.
+      - name: tenure_quartile
+        description: Global tenure ranking split into 4 buckets. Q1 shortest (bad, shortest), Q4 longest (not so bad).
+      - name: cumulative_churn
+        description: Running total of churned subscriptions ordered by start date, for trend analysis.

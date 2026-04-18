@@ -42,7 +42,7 @@ final as(
         ) over(
             order by start_date
             rows between unbounded preceding and current row 
-        ) as cummulative_churn --to visualize the progressive churn trend
+        ) as cumulative_churn --to visualize the progressive churn trend
     from base
 )
 
