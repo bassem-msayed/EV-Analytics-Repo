@@ -84,4 +84,4 @@ The source data is synthetic — generated specifically for this project. Distri
 
 **Bassem Sayed** — Senior Data Analyst with 10 years of experience, transitioning into analytics engineering.
 
-[GitHub](https://github.com/bassem-msayed) · [LinkedIn](ADD_LINKEDIN_URL_HERE)
+[LinkedIn](https://www.linkedin.com/in/bassemsayed/)
