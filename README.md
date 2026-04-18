@@ -17,7 +17,7 @@ Nearly half of all subscriptions churn — **43.8% across 210 subscriptions**. B
 
 The cancellation data confirms it: customers who cited expensive vehicle maintenance as their reason had the highest average monthly fee at €571.9 — and they skew heavily toward the organic channel.
 
-This isn't just a churn problem. It's an acquisition and onboarding problem.
+#→ This isn't just a churn problem. It's an acquisition and onboarding problem.
 
 ---
 
