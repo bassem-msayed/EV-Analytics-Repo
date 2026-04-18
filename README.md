@@ -13,7 +13,7 @@
 
 Nearly half of all subscriptions churn — **43.8% across 210 subscriptions**. But the headline number hides a sharper story.
 
-**Budget-segment customers who found the product organically churn at 87.5%.** These are customers who arrived without sales guidance, without expectation-setting, and without a loyalty anchor. When vehicle maintenance costs hit, they leave — and they leave fast. 57 of 92 total churns happened in the two shortest tenure quartiles combined.
+**Budget-segment customers who found the product organically churn at 87.5%.** These are customers who arrived without sales guidance, without expectation-setting, and without a loyalty anchor. When vehicle maintenance costs hit, they leave — and they leave fast. 90 of 92 total churns happened in the two shortest tenure quartiles combined - 57 in first quartile.
 
 The cancellation data confirms it: customers who cited expensive vehicle maintenance as their reason had the highest average monthly fee at €571.9 — and they skew heavily toward the organic channel.
 
