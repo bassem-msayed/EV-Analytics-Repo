@@ -38,7 +38,7 @@ final as(
                 )
         ) as tenure_quartile, --no partition as we want global visibility on percentile tenure
         sum(
-            case when churn_flag then 1 else 0 end
+            case when is_churned then 1 else 0 end
         ) over(
             order by start_date
             rows between unbounded preceding and current row 
